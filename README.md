@@ -6,10 +6,10 @@ A expense tracker that track expenses in different category
 Michael
  -  User Interface
  -  Add Expense
+ -  Delete specific expenses
    
 Ciel
  - Calculate the total expenses
- - Delete specific expenses
  - Filter expenses by category
 
 
