@@ -14,3 +14,5 @@ def date():
     DateNow = datetime.datetime.now()
     print(DateNow)
     return
+
+Total_Expense = []
