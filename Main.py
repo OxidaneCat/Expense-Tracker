@@ -29,7 +29,7 @@ def Add_Expense():
         Valid_Choice = "0"
     Set_Year = int(Valid_Choice)
     #month
-    valid_Choice = input("Enter the Month in numbers: ")
+    Valid_Choice = input("Enter the Month in numbers: ")
     if not Valid_Choice.isdigit():
         Valid_Choice = "0"
     Set_Month = int(Valid_Choice)
