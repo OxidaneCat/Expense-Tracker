@@ -24,20 +24,20 @@ def Add_Expense():
     global Set_Day,Set_Month,Set_Year,Set_Expense,Set_Category,Set_Amount
     #Set Time
     #year
-    Vaild_Choice = input("Enter the Year in numbers: ")
-    if not Vaild_Choice.isdigit():
-        Vaild_Choice = "0"
-    Set_Year = int(Vaild_Choice)
+    Valid_Choice = input("Enter the Year in numbers: ")
+    if not Valid_Choice.isdigit():
+        Valid_Choice = "0"
+    Set_Year = int(Valid_Choice)
     #month
-    Vaild_Choice = input("Enter the Month in numbers: ")
-    if not Vaild_Choice.isdigit():
-        Vaild_Choice = "0"
-    Set_Month = int(Vaild_Choice)
+    valid_Choice = input("Enter the Month in numbers: ")
+    if not Valid_Choice.isdigit():
+        Valid_Choice = "0"
+    Set_Month = int(Valid_Choice)
     #date
-    Vaild_Choice = input("Enter the date in numbers: ")
-    if not Vaild_Choice.isdigit():
-        Vaild_Choice = "0"
-    Set_Day = int(Vaild_Choice)
+    Valid_Choice = input("Enter the date in numbers: ")
+    if not Valid_Choice.isdigit():
+        Valid_Choice = "0"
+    Set_Day = int(Valid_Choice)
     #check if the date is real
     try:
         datetime.datetime(Set_Year, Set_Month, Set_Day)
@@ -47,10 +47,10 @@ def Add_Expense():
         return
     Set_Expense = input("Enter the item: ")
     #Enter amount used
-    Vaild_Choice = input("Enter The cost: ")
-    if not Vaild_Choice.isdigit():
-        Vaild_Choice = "0"
-    Set_Amount = int(Vaild_Choice)
+    Valid_Choice = input("Enter The cost: ")
+    if not Valid_Choice.isdigit():
+        Valid_Choice = "0"
+    Set_Amount = int(Valid_Choice)
     #Choose Category
     #Depends on the category Ceil add
     #add item
@@ -74,10 +74,10 @@ def Select():
     "        1 : Add expense\n" \
     "        2 : Remove an expense\n" \
     "        3 : Filter expenses\n")
-    Vaild_Choice = input("Select an option: ")
-    if not Vaild_Choice.isdigit():
-        Vaild_Choice = "0"
-    option = int(Vaild_Choice)
+    Valid_Choice = input("Select an option: ")
+    if not Valid_Choice.isdigit():
+        Valid_Choice = "0"
+    option = int(Valid_Choice)
     if option == 1:
         Add_Expense()
         Clear_Screen()
