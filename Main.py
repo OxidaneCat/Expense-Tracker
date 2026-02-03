@@ -53,10 +53,7 @@ def Add_Expense():
         return
     Set_Expense = input("Enter the item: ")
     #Enter amount spend
-    Valid_Choice = input("Enter The cost: ")
-    if not Valid_Choice.isdigit():
-        Valid_Choice = "0"
-    Set_Cost = int(Valid_Choice)
+    Set_Cost = input("Enter The cost: ")
     #////////FOR TESTING/////////////////// - Can be modify later
     #Choose Category
     #Depends on the category Ceil add
