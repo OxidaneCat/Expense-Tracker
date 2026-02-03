@@ -115,8 +115,15 @@ def Remove_Expense():
         print("Error")
         Remove_Expense()
     return
+    
+def Total_costs_calculation(a):
+    global Total_costs
+    Total_costs = sum(a)
+    Total_costs_calculation(Costs_list)
+    print (f"Total Expenses: {Total_costs}")
 
 
+    
 #   Main User Interface menu
 def Select():
 #////////FOR TESTING/////////////////// - Can be modify later
