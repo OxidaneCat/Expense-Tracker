@@ -3,7 +3,7 @@ Dictionaries = {} #Dictionaries
 #////////FOR TESTING/////////////////// - Can be modify later
 List = []
 #//////////////////////////////////////
-Total_costs = []
+Costs_list = []
 
 #Clear the screen
 import os
@@ -62,6 +62,7 @@ def Add_Expense():
     # Year-Month-Day:Item:Cost
     New_Item = f"Date: {Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d} Item: {Set_Expense} Cost:{Set_Cost}"
     List.append(New_Item)
+    Costs_list.append(Set_Cost)
     Clear_Screen()
     Select()
     return
@@ -119,8 +120,6 @@ def Total_costs_calculation(a):
     Total_costs = sum(a)
     Total_costs_calculation(Costs_list)
     print (f"Total Expenses: {Total_costs}")
-
-
     
 #   Main User Interface menu
 def Select():
