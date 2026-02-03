@@ -3,6 +3,7 @@ Dictionaries = {} #Dictionaries
 #////////FOR TESTING/////////////////// - Can be modify later
 List = []
 #//////////////////////////////////////
+Total_costs = []
 
 #Clear the screen
 import os
