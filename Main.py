@@ -92,7 +92,9 @@ def Add_Expense():
         Set_Category = "Else"
         Keep = "D"
     else:
-        print("ERROR")
+        Clear_Screen
+        print("ERROR, please chose a vaild option")
+        Select()
         return
     # Year-Month-Day:Item:Cost
     New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d} Item:{Set_Expense} Cost:{Set_Amount}, Category:{Set_Category}"
@@ -157,10 +159,75 @@ def Remove_Expense():
             Select()
     #Remove all expense in a category
     elif option == 3:
-        print("In progress 3")
+        print("Choose any Categories below to REMOVE all item\n" \
+        "        1 : Food and Drink \n" \
+        "        2 : Entertainment\n" \
+        "        3 : Daily necessities\n" \
+        "        4 : Else\n")
+        option = input("Select an category: ")
+
+        if option == 1:
+            print("All Expenses in Food and Drink will be removed")
+            print("input 1 to comfirm")
+            comfirm = input("Input: ")
+            if comfirm == 1:
+                Food_costs_list.clear()
+                Clear_Screen()
+                print("Removed")
+                Select()
+            else:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
+        if option == 2:
+            print("All Expenses in Entertainment will be removed")
+            print("Press 1 to comfirm")
+            comfirm = input("Input: ")
+            if comfirm == 1:
+                Entertainment_List.clear()
+                Clear_Screen()
+                print("Removed")
+                Select()
+            else:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
+        if option == 3:
+            print("All Expenses in Daily necessities will be removed")
+            print("Press 1 to comfirm")
+            comfirm = input("Input: ")
+            if comfirm == 1:
+                Daily_necessities_List.clear()
+                Clear_Screen()
+                print("Removed")
+                Select()
+            else:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
+        if option == 4:
+            print("All Expenses in Else will be removed")
+            print("Press 1 to comfirm")
+            comfirm = input("Input: ")
+            if comfirm == 1:
+                Else_List.clear()
+                Clear_Screen()
+                print("Removed")
+                Select()
+            else:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+        else:
+            Clear_Screen()
+            print("Remove Canceled")
+            Select()
     else:
-        print("Error")
-        Remove_Expense()
+        print("Remove Canceled")
+        Select()
     return
 
 def Category_Filter():
@@ -199,7 +266,9 @@ def Category_Filter():
         Total_costs_calculation(Dictionaries["Else"])
         print (f"Total Expenses: {Total_costs}")
     else:
-        print("ERROR")
+        Clear_Screen()
+        print("Action Canceled")
+        Select()
         return
     
 def Total_costs_calculation(a):
