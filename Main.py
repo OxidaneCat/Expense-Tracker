@@ -1,25 +1,25 @@
-#////////FOR TESTING/////////////////// - Can be modify later
+#Lists for All expenses
 List = []
 Costs_list = []
-
+#Lists for food expenses
 Food_List = []
 Food_costs_list = []
-
+#Lists for entertainment expenses
 Entertainment_List = []
 Entertainment_costs_List = []
-
+#Lists for necessities expenses
 Daily_necessities_List = []
 Daily_necessities_costs_List = []
-
+#Lists for necessities expenses
 Else_List = []
 Else_costs_List = []
-#//////////////////////////////////////
+
 Dictionaries = {
     "Food and Drink" : Food_costs_list,
     "Entertainment" : Entertainment_costs_List,
     "Daily necessities" : Daily_necessities_costs_List,
     "Else" : Else_costs_List,
-} #category
+}
 
 #Clear the screen
 import os
@@ -241,8 +241,8 @@ def Remove_Expense():
             if comfirm == 1:
                 Deleate_expence = set(List) & set(Entertainment_List)
                 Deleate_expence_cost = set(Costs_list) & set(Entertainment_costs_List)
-                List_new = [x for x in List if x not in Deleate_expence]
-                List_new_cost = [x for x in Costs_list if x not in Deleate_expence_cost]
+                List_new = [item for item in List if item not in Deleate_expence]
+                List_new_cost = [item for item in Costs_list if item not in Deleate_expence_cost]
                 List[:] = List_new
                 Costs_list[:] = List_new_cost
                 Entertainment_List.clear()
@@ -309,6 +309,7 @@ def Remove_Expense():
         Select()
     return
 
+#Print Expenses in Category
 def Category_Filter():
     print("What catefory of list do yo want to see?")
     print("Choose any Categories below\n" \
@@ -322,26 +323,34 @@ def Category_Filter():
         print("Action Canceled")
         Select()
     option = int(Vaild_Choice)
+    #Print all Food and Drink expenses
     if option == 1:
-        Clear_Screen()   
+        Clear_Screen()
+        print("All Food and Drink expenses")
         for item in Food_List:
             print(item)
         Total_costs_calculation(Dictionaries["Food and Drink"])
         print (f"Total Expenses: {Total_costs}")
+    #Print all Entertainment expenses
     elif option == 2:
-        Clear_Screen()   
+        Clear_Screen()
+        print("All Entertainment expenses")
         for item in Entertainment_List:
             print(item)
         Total_costs_calculation(Dictionaries["Entertainment"])
         print (f"Total Expenses: {Total_costs}")
+    #Print all Necessities expenses
     elif option == 3 :
-        Clear_Screen()  
+        Clear_Screen()
+        print("All Necessities expenses")
         for item in Daily_necessities_List:
             print(item)
         Total_costs_calculation(Dictionaries["Daily necessities"])
         print (f"Total Expenses: {Total_costs}")
+    #Print all Else exoenses
     elif option == 4 :
-        Clear_Screen()   
+        Clear_Screen()
+        print("All Else expenses")
         for item in Else_List:
             print(item)
         Total_costs_calculation(Dictionaries["Else"])
@@ -352,19 +361,21 @@ def Category_Filter():
         Select()
         return
     
+#Total costs calculation
 def Total_costs_calculation(a):
     global Total_costs
     Total_costs = float(sum(a))
-#   Main User Interface menu
-def Select():
 
-#////////FOR TESTING/////////////////// - Can be modify later
+#Main User Interface menu
+def Select():
+    #Print All Expenses
+    print()
+    print("All Expenses")
     for item in List:
         print(item)
     Total_costs_calculation(Costs_list)
     print (f"Total Expenses: {Total_costs}")
-#//////////////////////////////////////
-
+    #options
     print("Choose any option below\n" \
     "        1 : Add expense\n" \
     "        2 : Remove an expense\n" \
@@ -374,19 +385,22 @@ def Select():
         Clear_Screen()
         Select()
     option = int(Vaild_Choice)
+    #Add Expense
     if option == 1:
         Add_Expense()
         Clear_Screen()
+    #Remove Expense
     elif option == 2:
         Clear_Screen()
         Remove_Expense()
+    #Print Expenses in Category
     elif option ==3 :
         Clear_Screen()
         Category_Filter()
         Select()
     else:
-        print("ERROR")
+        print("Please choose an vaild option")
         Select()
     return
-
+#Start program
 Select()
