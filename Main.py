@@ -1,8 +1,7 @@
-
 #Lists for All expenses
 List = []
-Costs_list = []
-#Lists for food expenses
+Costs_List = []
+#Lists for food and Drink expenses
 Food_List = []
 Food_costs_List = []
 #Lists for entertainment expenses
@@ -20,7 +19,7 @@ Dictionaries = {
     "Entertainment" : Entertainment_costs_List,
     "Daily necessities" : Daily_necessities_costs_List,
     "Else" : Else_costs_List,
-}
+} #category
 
 #Clear the screen
 import os
@@ -34,6 +33,9 @@ def Clear_Screen():
 
 import datetime
 #Time from locl machine (For testing)
+
+import time
+
 def Date():
     DateNow = datetime.datetime.now()
     print(DateNow)
@@ -65,13 +67,15 @@ def Add_Expense():
         Add_Expense()
         return
     Set_Expense = input("Enter the item: ")
-    if Set_Expense == "":
-        Clear_Screen()
-        print("ERROR, please write some word to describe the expense")
-        Add_Expense()
     #Enter amount used
-    Vaild_Choice = input("Enter The cost: ")
-    Set_Cost = float(Vaild_Choice)
+    try:
+        Vaild_Choice = input("Enter The cost: ")
+        Set_Cost = float(Vaild_Choice)
+    except ValueError:
+        Clear_Screen()
+        print("ERROR, Please input correct value.")
+        Add_Expense()
+        return
     #Choose Category
     print("Choose any Categories below\n" \
     "        1 : Food and Drink \n" \
@@ -80,9 +84,7 @@ def Add_Expense():
     "        4 : Else\n")
     Vaild_Choice = input("Select an option: ")
     if not Vaild_Choice.isdigit():
-        Clear_Screen()
-        print("ERROR, please chose a vaild option")
-        Add_Expense()
+        Vaild_Choice = "0"
     option = int(Vaild_Choice)
     if option == 1:
         Set_Category = "Food and Drink"
@@ -99,13 +101,13 @@ def Add_Expense():
     else:
         Clear_Screen()
         print("ERROR, please chose a vaild option")
-        Add_Expense()
+        Select()
         return
     #add item
     # Year-Month-Day:Item:Cost
-    New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d}:{Set_Expense}:{Set_Cost}, Category:{Set_Category}"
+    New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d} Item:{Set_Expense} Cost:{Set_Cost}, Category:{Set_Category}"
     List.append(New_Item)
-    Costs_list.append(Set_Cost)
+    Costs_List.append(Set_Cost)
     if Keep == "A":
         Food_List.append(New_Item)
         Food_costs_List.append(Set_Cost)
@@ -130,41 +132,16 @@ def Remove_Expense():
     "        3 : Remove all expense in a category \n")
     Valid_Choice = input("Select an option: ")
     if not Valid_Choice.isdigit():
-        Clear_Screen()
-        print("Option canceled")
-        Select()
+        Valid_Choice = "0"
     option = int(Valid_Choice)
     #Remove an expense
     if option == 1:
         for item in List:
             print(item) #print the list
-        Item_delete = input("Enter the event in the same format to delete the event: \n")
+        Item_delete = input("Enter the event's date and name in the same format to delete the event: \n")
             #found the item and delete it
         if Item_delete in List:
-            index_of_List = List.index(Item_delete)
             List.remove(Item_delete)
-            Costs_list.remove(Costs_list[index_of_List])
-
-            if Item_delete in Food_List:
-                index_of_List = Food_List.index(Item_delete)
-                Food_List.remove(Food_List[index_of_List])
-                Food_costs_List.remove(Food_costs_List[index_of_List])
-
-            elif Item_delete in Entertainment_List:
-                index_of_List = Entertainment_List.index(Item_delete)
-                Entertainment_List.remove(Entertainment_List[index_of_List])
-                Entertainment_costs_List.remove(Entertainment_costs_List[index_of_List])
-
-            elif Item_delete in Daily_necessities_List:
-                index_of_List = Daily_necessities_List.index(Item_delete) 
-                Daily_necessities_List.remove(Daily_necessities_List[index_of_List])
-                Daily_necessities_costs_List.remove(Daily_necessities_costs_List[index_of_List])
-
-            elif Item_delete in Else_List:
-                index_of_List = Else_List.index(Item_delete)
-                Else_List.remove(Else_List[index_of_List])
-                Else_costs_List.remove(Else_costs_List[index_of_List])
-
             Clear_Screen()
             print("Item removed")
             Select()
@@ -176,21 +153,10 @@ def Remove_Expense():
     elif option == 2:
         Valid_Choice = input("Press 1 to comfirm TO REMOVE EVERY ITEMS: ")
         if not Valid_Choice.isdigit():
-            Clear_Screen()
-            print("Option canceled")
-            Select()
+            Valid_Choice = "0"
         Item_Remove = int(Valid_Choice)
         if Item_Remove == 1:
             List.clear()
-            Costs_list.clear()
-            Food_List.clear()
-            Food_costs_List.clear()
-            Entertainment_List.clear()
-            Entertainment_costs_List.clear()
-            Daily_necessities_List.clear()
-            Daily_necessities_costs_List.clear()
-            Else_List.clear()
-            Else_costs_List.clear()
             Clear_Screen()
             Select()
         else:
@@ -214,13 +180,19 @@ def Remove_Expense():
         if option == 1:
             print("All Expenses in Food and Drink will be removed")
             print("input 1 to comfirm")
-            comfirm = int(input("Input: "))
+            try:
+                comfirm = int(input("Input: "))
+            except ValueError:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
             if comfirm == 1:
                 for item in Food_List:
                     if item in List:
                         index = List.index(item)
                         List.pop(index)
-                        Costs_list.pop(index)
+                        Costs_List.pop(index)
                 Food_List.clear()
                 Food_costs_List.clear()
                 Clear_Screen()
@@ -234,13 +206,19 @@ def Remove_Expense():
         elif option == 2:
             print("All Expenses in Entertainment will be removed")
             print("input 1 to comfirm")
-            comfirm = int(input("Input: "))
+            try:
+                comfirm = int(input("Input: "))
+            except ValueError:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
             if comfirm == 1:
                 for item in Entertainment_List:
                     if item in List:
                         index = List.index(item)
                         List.pop(index)
-                        Costs_list.pop(index)
+                        Costs_List.pop(index)
                 Entertainment_List.clear()
                 Entertainment_costs_List.clear()
                 Clear_Screen()
@@ -254,13 +232,19 @@ def Remove_Expense():
         elif option == 3:
             print("All Expenses in Daily necessities will be removed")
             print("input 1 to comfirm")
-            comfirm = int(input("Input: "))
+            try:
+                comfirm = int(input("Input: "))
+            except ValueError:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
             if comfirm == 1:
                 for item in Daily_necessities_List:
                     if item in List:
                         index = List.index(item)
                         List.pop(index)
-                        Costs_list.pop(index)
+                        Costs_List.pop(index)
                 Daily_necessities_List.clear()
                 Daily_necessities_costs_List.clear()
                 Clear_Screen()
@@ -274,13 +258,19 @@ def Remove_Expense():
         elif option == 4:
             print("All Expenses in else will be removed")
             print("input 1 to comfirm")
-            comfirm = int(input("Input: "))
+            try:
+                comfirm = int(input("Input: "))
+            except ValueError:
+                Clear_Screen()
+                print("Remove Canceled")
+                Select()
+
             if comfirm == 1:
                 for item in Else_costs_List:
                     if item in List:
                         index = List.index(item)
                         List.pop(index)
-                        Costs_list.pop(index)
+                        Costs_List.pop(index)
                 Else_List.clear()
                 Else_costs_List.clear()
                 Clear_Screen()
@@ -311,48 +301,38 @@ def Category_Filter():
     "        4 : Else\n")
     Vaild_Choice = input("Select an option: ")
     if not Vaild_Choice.isdigit():
-        Clear_Screen
-        print("Action Canceled")
-        Select()
+          Vaild_Choice = "0"
     option = int(Vaild_Choice)
     #Print all Food and Drink expenses
-    if option == 1:
-        Clear_Screen()
-        print("All Food and Drink expenses")
+    if option == 1:  
         for item in Food_List:
             print(item)
         Total_costs_calculation(Dictionaries["Food and Drink"])
         print (f"Total Expenses: {Total_costs}")
     #Print all Entertainment expenses
-    elif option == 2:
-        Clear_Screen()
-        print("All Entertainment expenses")
+    elif option == 2:   
         for item in Entertainment_List:
             print(item)
         Total_costs_calculation(Dictionaries["Entertainment"])
         print (f"Total Expenses: {Total_costs}")
     #Print all Necessities expenses
-    elif option == 3 :
-        Clear_Screen()
-        print("All Necessities expenses")
+    elif option == 3 :   
         for item in Daily_necessities_List:
-            print(item)
+           print(item)
         Total_costs_calculation(Dictionaries["Daily necessities"])
         print (f"Total Expenses: {Total_costs}")
     #Print all Else exoenses
     elif option == 4 :
-        Clear_Screen()
-        print("All Else expenses")
         for item in Else_List:
             print(item)
         Total_costs_calculation(Dictionaries["Else"])
         print (f"Total Expenses: {Total_costs}")
+
     else:
         Clear_Screen()
         print("Action Canceled")
         Select()
         return
-    
 #Total costs calculation
 def Total_costs_calculation(a):
     global Total_costs
@@ -361,11 +341,9 @@ def Total_costs_calculation(a):
 #Main User Interface menu
 def Select():
     #Print All Expenses
-    print()
-    print("All Expenses")
     for item in List:
         print(item)
-    Total_costs_calculation(Costs_list)
+    Total_costs_calculation(Costs_List)
     print (f"Total Expenses: {Total_costs}")
     #options
     print("Choose any option below\n" \
@@ -374,8 +352,7 @@ def Select():
     "        3 : Filter expenses\n")
     Vaild_Choice = input("Select an option: ")
     if not Vaild_Choice.isdigit():
-        Clear_Screen()
-        Select()
+        Vaild_Choice = "0"
     option = int(Vaild_Choice)
     #Add Expense
     if option == 1:
@@ -383,15 +360,18 @@ def Select():
         Clear_Screen()
     #Remove Expense
     elif option == 2:
-        Clear_Screen()
         Remove_Expense()
+        Select()
     #Print Expenses in Category
     elif option ==3 :
         Clear_Screen()
         Category_Filter()
+        time.sleep(2)
+        print()
         Select()
     else:
-        print("Please choose an vaild option")
+        Clear_Screen()
+        print("ERROR")
         Select()
     return
 #Start program
