@@ -1,9 +1,10 @@
+
 #Lists for All expenses
 List = []
 Costs_list = []
 #Lists for food expenses
 Food_List = []
-Food_costs_list = []
+Food_costs_List = []
 #Lists for entertainment expenses
 Entertainment_List = []
 Entertainment_costs_List = []
@@ -15,7 +16,7 @@ Else_List = []
 Else_costs_List = []
 
 Dictionaries = {
-    "Food and Drink" : Food_costs_list,
+    "Food and Drink" : Food_costs_List,
     "Entertainment" : Entertainment_costs_List,
     "Daily necessities" : Daily_necessities_costs_List,
     "Else" : Else_costs_List,
@@ -100,7 +101,6 @@ def Add_Expense():
         print("ERROR, please chose a vaild option")
         Add_Expense()
         return
-    #Depends on the category Ciel add
     #add item
     # Year-Month-Day:Item:Cost
     New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d}:{Set_Expense}:{Set_Cost}, Category:{Set_Category}"
@@ -108,7 +108,7 @@ def Add_Expense():
     Costs_list.append(Set_Cost)
     if Keep == "A":
         Food_List.append(New_Item)
-        Food_costs_list.append(Set_Cost)
+        Food_costs_List.append(Set_Cost)
     elif Keep == "B":
         Entertainment_List.append(New_Item)
         Entertainment_costs_List.append(Set_Cost)
@@ -136,11 +136,9 @@ def Remove_Expense():
     option = int(Valid_Choice)
     #Remove an expense
     if option == 1:
-        #////////FOR TESTING/////////////////// - Can be modify later
         for item in List:
-            print(item)
-        #//////////////////////////////////////
-        Item_delete = input("Enter the event's date and name in the same format to delete the event: \n")
+            print(item) #print the list
+        Item_delete = input("Enter the event in the same format to delete the event: \n")
             #found the item and delete it
         if Item_delete in List:
             index_of_List = List.index(Item_delete)
@@ -150,7 +148,7 @@ def Remove_Expense():
             if Item_delete in Food_List:
                 index_of_List = Food_List.index(Item_delete)
                 Food_List.remove(Food_List[index_of_List])
-                Food_costs_list.remove(Food_costs_list[index_of_List])
+                Food_costs_List.remove(Food_costs_List[index_of_List])
 
             elif Item_delete in Entertainment_List:
                 index_of_List = Entertainment_List.index(Item_delete)
@@ -186,7 +184,7 @@ def Remove_Expense():
             List.clear()
             Costs_list.clear()
             Food_List.clear()
-            Food_costs_list.clear()
+            Food_costs_List.clear()
             Entertainment_List.clear()
             Entertainment_costs_List.clear()
             Daily_necessities_List.clear()
@@ -201,6 +199,7 @@ def Remove_Expense():
             Select()
     #Remove all expense in a category
     elif option == 3:
+        Clear_Screen()
         print("Choose any Categories below to REMOVE all item\n" \
         "        1 : Food and Drink \n" \
         "        2 : Entertainment\n" \
@@ -217,15 +216,13 @@ def Remove_Expense():
             print("input 1 to comfirm")
             comfirm = int(input("Input: "))
             if comfirm == 1:
-                Deleate_expence = set(List) & set(Food_List)
-                Deleate_expence_cost = set(Costs_list) & set(Food_costs_list)
-                List_new = [x for x in List if x not in Deleate_expence]
-                List_new_cost = [x for x in Costs_list if x not in Deleate_expence_cost]
-                List[:] = List_new
-                Costs_list[:] = List_new_cost
+                for item in Food_List:
+                    if item in List:
+                        index = List.index(item)
+                        List.pop(index)
+                        Costs_list.pop(index)
                 Food_List.clear()
-                Food_costs_list.clear()
-
+                Food_costs_List.clear()
                 Clear_Screen()
                 print("Removed")
                 Select()
@@ -234,20 +231,18 @@ def Remove_Expense():
                 print("Remove Canceled")
                 Select()
 
-        if option == 2:
+        elif option == 2:
             print("All Expenses in Entertainment will be removed")
-            print("Press 1 to comfirm")
+            print("input 1 to comfirm")
             comfirm = int(input("Input: "))
             if comfirm == 1:
-                Deleate_expence = set(List) & set(Entertainment_List)
-                Deleate_expence_cost = set(Costs_list) & set(Entertainment_costs_List)
-                List_new = [item for item in List if item not in Deleate_expence]
-                List_new_cost = [item for item in Costs_list if item not in Deleate_expence_cost]
-                List[:] = List_new
-                Costs_list[:] = List_new_cost
+                for item in Entertainment_List:
+                    if item in List:
+                        index = List.index(item)
+                        List.pop(index)
+                        Costs_list.pop(index)
                 Entertainment_List.clear()
                 Entertainment_costs_List.clear()
-
                 Clear_Screen()
                 print("Removed")
                 Select()
@@ -256,20 +251,18 @@ def Remove_Expense():
                 print("Remove Canceled")
                 Select()
 
-        if option == 3:
+        elif option == 3:
             print("All Expenses in Daily necessities will be removed")
-            print("Press 1 to comfirm")
+            print("input 1 to comfirm")
             comfirm = int(input("Input: "))
             if comfirm == 1:
-                Deleate_expence = set(List) & set(Daily_necessities_List)
-                Deleate_expence_cost = set(Costs_list) & set(Daily_necessities_costs_List)
-                List_new = [x for x in List if x not in Deleate_expence]
-                List_new_cost = [x for x in Costs_list if x not in Deleate_expence_cost]
-                List[:] = List_new
-                Costs_list[:] = List_new_cost
+                for item in Daily_necessities_List:
+                    if item in List:
+                        index = List.index(item)
+                        List.pop(index)
+                        Costs_list.pop(index)
                 Daily_necessities_List.clear()
                 Daily_necessities_costs_List.clear()
-
                 Clear_Screen()
                 print("Removed")
                 Select()
@@ -278,20 +271,18 @@ def Remove_Expense():
                 print("Remove Canceled")
                 Select()
 
-        if option == 4:
-            print("All Expenses in Else will be removed")
-            print("Press 1 to comfirm")
+        elif option == 4:
+            print("All Expenses in else will be removed")
+            print("input 1 to comfirm")
             comfirm = int(input("Input: "))
             if comfirm == 1:
-                Deleate_expence = set(List) & set(Else_List)
-                Deleate_expence_cost = set(Costs_list) & set(Else_costs_List)
-                List_new = [x for x in List if x not in Deleate_expence]
-                List_new_cost = [x for x in Costs_list if x not in Deleate_expence_cost]
-                List[:] = List_new
-                Costs_list[:] = List_new_cost
+                for item in Else_costs_List:
+                    if item in List:
+                        index = List.index(item)
+                        List.pop(index)
+                        Costs_list.pop(index)
                 Else_List.clear()
                 Else_costs_List.clear()
-
                 Clear_Screen()
                 print("Removed")
                 Select()
@@ -299,6 +290,7 @@ def Remove_Expense():
                 Clear_Screen()
                 print("Remove Canceled")
                 Select()
+
         else:
             Clear_Screen()
             print("Remove Canceled")
