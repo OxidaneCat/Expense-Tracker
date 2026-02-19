@@ -36,6 +36,7 @@ import datetime
 
 #Allow users to add expenses to the list and categories 
 def Add_Expense():
+    Clear_Screen()
     print("Add an new expense!")
     #Set Time
     #year
@@ -105,7 +106,7 @@ def Add_Expense():
         return
     #add item
     # Year-Month-Day:Item:Cost
-    New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d}:{Set_Expense}:{Set_Cost}, Category:{Set_Category}"
+    New_Item = f"{Set_Year:04d}-{Set_Month:02d}-{Set_Day:02d}, {Set_Expense}, cost:{Set_Cost}, Category:{Set_Category}"
     List.append(New_Item)
     Costs_List.append(Set_Cost)
     if Keep == "A":
@@ -140,8 +141,8 @@ def Remove_Expense():
     if option == 1:
         for item in List:
             print(item) #print the list
-        Item_delete = input("Enter the event in the same format to delete the event: \n")
-        print("YEAR-MONTH-DAY:EXPENSE:COST, Category:CATEGORY \n")
+        Item_delete = input("Enter the event in the same format to delete the event: \n"
+                            "YEAR-MONTH-DAY, EXPENSE, cost:COST, Category:CATEGORY \n")
             #found the item and delete it
         if Item_delete in List:
             index_of_List = List.index(Item_delete)
@@ -218,6 +219,7 @@ def Remove_Expense():
         option = int(Valid_Choice)
         # remove everything in Food and Drink category
         if option == 1:
+            Clear_Screen()
             print("All Expenses in Food and Drink category will be removed")
             print("input 1 to comfirm")
             try:
@@ -412,8 +414,8 @@ def Select():
     option = int(Vaild_Choice)
     #Add Expense
     if option == 1:
-        Add_Expense()
         Clear_Screen()
+        Add_Expense()
     #Remove Expense
     elif option == 2:
         Clear_Screen()
