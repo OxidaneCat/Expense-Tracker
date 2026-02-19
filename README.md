@@ -20,11 +20,12 @@ Ciel
 
 ## Features
  - Add expenses with date, name, cost, and categories
- - option to remove specific expenses, remove all expenses, and remove all expenses in a category
- - view all expenses
- - view expenses in ther category
- - view total expenses cost
- - view total expenses cost in a category
-
+ - Option to remove specific expenses, remove all expenses, and remove all expenses in a category
+ - View all expenses
+ - View expenses in ther category
+ - View total expenses cost
+ - View total expenses cost in a category
+## Challenges
+Communication problems - Since we are working at the same time, when a teammate built their work on an outdated version of the code, the previous code updates were unintentionally removed by github. Therfore, we improved our communication by informing each other before merging, and we manually review the files and resolve merge conflicts. We enjoy collaborative coding since we can find and fix bugs faster together, and it allows us to share interesting ideas to improve this program.
 ## License
 MIT 
