@@ -14,6 +14,7 @@ Daily_necessities_costs_List = []
 Else_List = []
 Else_costs_List = []
 
+#Filtered list
 Dictionaries = {
     "Food and Drink" : Food_costs_List,
     "Entertainment" : Entertainment_costs_List,
