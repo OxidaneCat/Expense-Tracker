@@ -36,7 +36,6 @@ import datetime
 
 #Allow users to add expenses to the list and categories 
 def Add_Expense():
-    Clear_Screen()
     print("Add an new expense!")
     #Set Time
     #year
@@ -69,6 +68,8 @@ def Add_Expense():
         Add_Expense()
     #Enter amount used
     Vaild_Choice = input("Enter The cost: ")
+    if not Vaild_Choice.isdigit():
+        Vaild_Choice = "0"
     Set_Cost = float(Vaild_Choice)
     #Choose Category for the expense
     print("Choose a Category below\n" \
@@ -385,8 +386,8 @@ def Select():
     option = int(Vaild_Choice)
     #Add Expense
     if option == 1:
-        Add_Expense()
         Clear_Screen()
+        Add_Expense()
     #Remove Expense
     elif option == 2:
         Clear_Screen()
