@@ -36,6 +36,7 @@ import datetime
 
 #Allow users to add expenses to the list and categories 
 def Add_Expense():
+    Clear_Screen()
     print("Add an new expense!")
     #Set Time
     #year
