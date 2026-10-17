@@ -14,6 +14,7 @@ Ciel
 
 ## Description
  - A expenses tracker thar allows the user to track expenses, categorise expenses, and record total amount spent.
+   ![alt text](https://github.com/OxidaneCat/Expense-Tracker/blob/main/ReadMeImage/MainUI.png "MainUI")
 
 ## How to Run
  - Follow instructions in the terminal by typing available options at the prompt and press Enter.
