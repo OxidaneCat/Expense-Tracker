@@ -432,6 +432,3 @@ def Select():
     return
 #Start program
 Select()
-    return
-#Start program
-Select()
